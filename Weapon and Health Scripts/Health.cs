@@ -11,6 +11,7 @@ public class Health : MonoBehaviour {
 	
 	public int StartHealth = 100;
 	public string ProjectileTag = "Ammo";
+	public GameObject OptionalExplosion = null;
 	private int currentHealth;
 	
 	
@@ -24,7 +25,7 @@ public class Health : MonoBehaviour {
 			currentHealth = currentHealth - dam;
 		}
 		if (currentHealth <= 0) {
-			Destroy(gameObject);
+			die();
 		}
 	}
 	
@@ -32,7 +33,23 @@ public class Health : MonoBehaviour {
 		print ("hit");
 		currentHealth = currentHealth - dam;
 		if (currentHealth <= 0) {
-			Destroy(gameObject);
+			die();
+		}
+	}
+	public int getCurrentHealth() {
+		return currentHealth;
+	}
+	
+	void die() {
+		if (gameObject.tag != "Player") {
+			ScoreChanger scoreScript = gameObject.GetComponent<ScoreChanger> ();
+			if (scoreScript != null) {
+				scoreScript.changeScore ();
+			}
+			if(OptionalExplosion!=null)Instantiate(OptionalExplosion, gameObject.transform.position, Quaternion.identity);
+			Destroy (gameObject);
+		} else {
+			Application.LoadLevel ("GameOverScreen");
 		}
 	}
 }

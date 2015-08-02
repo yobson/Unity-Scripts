@@ -17,3 +17,8 @@
 
 7) You can now add health scripts to anything that can be shot. Set the tag variable to whatever the tag that you added to the bullets was, The default being Ammo.
 
+## To Add Multiple Guns, Ammo Pick Up & Gun Spawns
+### This requires You have done the setup before and you have MultiGun.cs, reload.cs and GunSpawn.cs
+
+1) We First need to add an empty Game object, This will be our weapon manger. Name it whatever. Attach all weapons to the player at the same time. Drag 
+

@@ -28,8 +28,12 @@ public class MultiGun : MonoBehaviour {
 	public bool Gun7 = false;
 	public GameObject Gun7Object;
 	
+	private int activeGun = 1;
+	private int ammoInCurrentGun;
+	private bool Auto;
+	
 	void Start () {
-		try { activate(Gun1Object); } catch {}
+		try { deactivate(Gun1Object); } catch {}
 		try { deactivate(Gun2Object); } catch {}
 		try { deactivate(Gun3Object); } catch {}
 		try { deactivate(Gun4Object); } catch {}
@@ -41,6 +45,51 @@ public class MultiGun : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		loop ();
+		switch (activeGun) {
+		case (1):
+			if (Gun1Object != null && Gun1) {
+				ammoInCurrentGun = Gun1Object.GetComponentInChildren<Gun>().returnAmmo();
+				Auto = Gun1Object.GetComponentInChildren<Gun>().UnlimitedAmmo;
+				print (Auto);
+			} else { ammoInCurrentGun = 0; Auto = false; }
+			break;
+		case (2):
+			if (Gun2Object != null && Gun2) {
+				ammoInCurrentGun = Gun2Object.GetComponentInChildren<Gun>().returnAmmo();
+				Auto = Gun2Object.GetComponentInChildren<Gun>().UnlimitedAmmo;
+			} else { ammoInCurrentGun = 0; Auto = false; }
+			break;
+		case (3):
+			if (Gun3Object != null && Gun3) {
+				ammoInCurrentGun = Gun3Object.GetComponentInChildren<Gun>().returnAmmo();
+				Auto = Gun3Object.GetComponentInChildren<Gun>().UnlimitedAmmo;
+			} else { ammoInCurrentGun = 0; Auto = false; }
+			break;
+		case (4):
+			if (Gun4Object != null && Gun4) {
+				ammoInCurrentGun = Gun4Object.GetComponentInChildren<Gun>().returnAmmo();
+				Auto = Gun4Object.GetComponentInChildren<Gun>().UnlimitedAmmo;
+			} else { ammoInCurrentGun = 0; Auto = false; }
+			break;
+		case (5):
+			if (Gun5Object != null && Gun5) {
+				ammoInCurrentGun = Gun5Object.GetComponentInChildren<Gun>().returnAmmo();
+				Auto = Gun5Object.GetComponentInChildren<Gun>().UnlimitedAmmo;
+			} else { ammoInCurrentGun = 0; Auto = false; }
+			break;
+		case (6):
+			if (Gun6Object != null && Gun6) {
+				ammoInCurrentGun = Gun6Object.GetComponentInChildren<Gun>().returnAmmo();
+				Auto = Gun6Object.GetComponentInChildren<Gun>().UnlimitedAmmo;
+			} else { ammoInCurrentGun = 0; Auto = false; }
+			break;
+		case (7):
+			if (Gun7Object != null && Gun7) {
+				ammoInCurrentGun = Gun7Object.GetComponentInChildren<Gun>().returnAmmo();
+				Auto = Gun7Object.GetComponentInChildren<Gun>().UnlimitedAmmo;
+			} else { ammoInCurrentGun = 0; Auto = false; }
+			break;
+		}
 	}
 	
 	void loop() {
@@ -52,6 +101,7 @@ public class MultiGun : MonoBehaviour {
 			if (Gun5) { deactivate(Gun5Object); }
 			if (Gun6) { deactivate(Gun6Object); }
 			if (Gun7) { deactivate(Gun7Object); }
+			activeGun = 1;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha2)) {
 			if (Gun1) { deactivate(Gun1Object); }
@@ -61,6 +111,7 @@ public class MultiGun : MonoBehaviour {
 			if (Gun5) { deactivate(Gun5Object); }
 			if (Gun6) { deactivate(Gun6Object); }
 			if (Gun7) { deactivate(Gun7Object); }
+			activeGun = 2;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha3)) {
 			if (Gun1) { deactivate(Gun1Object); }
@@ -70,6 +121,7 @@ public class MultiGun : MonoBehaviour {
 			if (Gun5) { deactivate(Gun5Object); }
 			if (Gun6) { deactivate(Gun6Object); }
 			if (Gun7) { deactivate(Gun7Object); }
+			activeGun = 3;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha4)) {
 			if (Gun1) { deactivate(Gun1Object); }
@@ -79,6 +131,7 @@ public class MultiGun : MonoBehaviour {
 			if (Gun5) { deactivate(Gun5Object); }
 			if (Gun6) { deactivate(Gun6Object); }
 			if (Gun7) { deactivate(Gun7Object); }
+			activeGun = 4;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha5)) {
 			if (Gun1) { deactivate(Gun1Object); }
@@ -88,6 +141,7 @@ public class MultiGun : MonoBehaviour {
 			if (Gun5) { activate(Gun5Object); }
 			if (Gun6) { deactivate(Gun6Object); }
 			if (Gun7) { deactivate(Gun7Object); }
+			activeGun = 5;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha6)) {
 			if (Gun1) { deactivate(Gun1Object); }
@@ -97,6 +151,7 @@ public class MultiGun : MonoBehaviour {
 			if (Gun5) { deactivate(Gun5Object); }
 			if (Gun6) { activate(Gun6Object); }
 			if (Gun7) { deactivate(Gun7Object); }
+			activeGun = 6;
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha7)) {
 			if (Gun1) { deactivate(Gun1Object); }
@@ -106,18 +161,25 @@ public class MultiGun : MonoBehaviour {
 			if (Gun5) { deactivate(Gun5Object); }
 			if (Gun6) { deactivate(Gun6Object); }
 			if (Gun7) { activate(Gun7Object); }
+			activeGun = 7;
 		}
 	}
 	
 	void activate(GameObject gun) {
+		//gun.SetActive (true);
 		gun.GetComponent<MeshRenderer> ().enabled = true;
 		gun.GetComponentInChildren<Gun> ().enabled = true;
-		//gun.GetComponentInChildren<Collider> ().enabled = true;
 	}
 	
 	void deactivate(GameObject gun) {
+		//gun.SetActive (false);
 		gun.GetComponent<MeshRenderer> ().enabled = false;
 		gun.GetComponentInChildren<Gun> ().enabled = false;
-		//gun.GetComponentInChildren<Collider> ().enabled = false;
+	}
+	
+	public string returnAmmoInCurrentGun(){
+		string pass = " " + ammoInCurrentGun;
+		if (!Auto) { return pass; }
+		else { return " Unlimited"; }
 	}
 }

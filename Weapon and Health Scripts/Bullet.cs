@@ -13,6 +13,7 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour 
 {
+	public GameObject OptionalExplosion = null;
 
 	private int damage;
 
@@ -33,6 +34,7 @@ public class Bullet : MonoBehaviour
 		Destroy(gameObject);
 	}
 	void OnTriggerEnter(Collider col) {
+		if(OptionalExplosion!=null)Instantiate(OptionalExplosion, gameObject.transform.position, Quaternion.identity);
 		Destroy (gameObject);
 	}
 

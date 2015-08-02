@@ -3,7 +3,6 @@
 //To use, create a empty game object and add this script to it. Place this on the muzzel of the gun
 //Make sure the gun is its parent in the hiarachy. Add the bullet prefab (Instructions in Bullet.cs)
 //The drop down power will affect the amount of damage each bullet will do.
-//The Automatic checkbox will make it automatic
 //The Checkbox will switch between unlimited ammop and a limited clip size.
 //Size of clip will determin how much ammo the gun has max
 //Cool down will determin how long it is until the gun can shoot again
@@ -85,6 +84,10 @@ public class Gun : MonoBehaviour {
 	public void reload(int percent) {
 		clip = clip + ((ClipSizeIfLimited * percent)/100);
 		if (clip > ClipSizeIfLimited) { clip = ClipSizeIfLimited; }
+	}
+	
+	public int returnAmmo() {
+		return clip;
 	}
 	
 	IEnumerator CoolGun(float coolDown) {
