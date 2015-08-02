@@ -21,7 +21,9 @@
 ### This requires You have done the setup before and you have MultiGun.cs, reload.cs and GunSpawn.cs
 
 1) We First need to add an empty Game object, This will be our weapon manger. Name it whatever. Attach all weapons to the player at the same time. Drag the MultiGun.cs Script to this.
+
 2) Put all the weapons on the player at the same time, in the correct position, all set up as instructed above. Now drag each weapon into the slots (Gun 1 Object, Gun 2 Object...) and enable any guns you want acsess to on startup. **Note: When you start the game, no gun will be equipt, press the correct numer to equip it.**
+
 3) Now you can set up the reload and gun spawn scripts. These should be rather self-explanatary. They need collideres which are set as triggers too.
 
 #### As a general rule, all colliders are triggers
