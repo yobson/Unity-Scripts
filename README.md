@@ -16,4 +16,4 @@ This can be used to make a Third person controller.
 ### Ai Navigation
 There is only currently a script for following the player at the moment. But you can configure the behaviour, removing the player/object being followed from the map or damaging health (Needs the health script). Later, an advanced waypoint based AI is going to be written.
 
-## Any suggestions, requests or help, contact me by jam.hobson@hotmail.co.uk! x
+#### Any suggestions, requests or help, contact me by jam.hobson@hotmail.co.uk!
